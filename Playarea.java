@@ -1,14 +1,19 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-public class Playarea extends JPanel{
+public class Playarea extends JPanel implements KeyListener{
 	ArrayList<Snake> snakes = new ArrayList<Snake>();
 	ArrayList<Food> foodz = new ArrayList<Food>();
 	public Playarea(){
 		super();
+		addKeyListener(this);
+		setFocusable(true);
+		setFocusTraversalKeysEnabled(false);
 	}
 	public void addsnake(Snake s){
 		snakes.add(s);
@@ -26,5 +31,28 @@ public class Playarea extends JPanel{
 		for (int a = 0; a < foodz.size(); a++) {
 			foodz.get(a).paintMe(g);
 		}
+	}
+	@Override
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		if (key == KeyEvent.VK_W) {
+			
+		}
+		else if (key == KeyEvent.VK_A) {
+			
+		}
+		else if (key == KeyEvent.VK_S) {
+			
+		}
+		else if (key == KeyEvent.VK_D) {
+			
+		}
+		
+	}
+	@Override
+	public void keyReleased(KeyEvent e) {
+	}
+	@Override
+	public void keyTyped(KeyEvent e) {		
 	}
 }
