@@ -27,6 +27,7 @@ public class Board implements ActionListener{
 	final int med = 2;
 	final int hard = 3;
 	int dif = undecided;
+	boolean running = true;
 	
 	
 	public Board(){
@@ -56,7 +57,7 @@ public class Board implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(Easy)){
 			dif = easy;
-			Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
+			Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()),10);
 			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
 			playarea.addsnake(snake);
 			playarea.addfood(food);
@@ -67,7 +68,7 @@ public class Board implements ActionListener{
 		}
 		if(e.getSource().equals(Medium)){
 			dif = med;
-			Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
+			Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()),10);
 			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
 			playarea.addsnake(snake);
 			playarea.addfood(food);
@@ -78,7 +79,7 @@ public class Board implements ActionListener{
 		}
 		if(e.getSource().equals(Hard)){
 			dif = hard;
-			Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
+			Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()),10);
 			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
 			playarea.addsnake(snake);
 			playarea.addfood(food);
@@ -103,6 +104,4 @@ public class Board implements ActionListener{
 		}
 
 	}
-
 }
-
