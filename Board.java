@@ -27,7 +27,7 @@ public class Board implements ActionListener{
 	final int med = 2;
 	final int hard = 3;
 	int dif = undecided;
-	boolean running = true;
+	boolean running = false;
 	
 	
 	public Board(){
@@ -61,6 +61,7 @@ public class Board implements ActionListener{
 			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
 			playarea.addsnake(snake);
 			playarea.addfood(food);
+			running = true;
 			frame.repaint();
 			Easy.setEnabled(false);
 			Medium.setEnabled(false);
@@ -72,6 +73,7 @@ public class Board implements ActionListener{
 			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
 			playarea.addsnake(snake);
 			playarea.addfood(food);
+			running = true;
 			frame.repaint();
 			Easy.setEnabled(false);
 			Medium.setEnabled(false);
@@ -83,6 +85,7 @@ public class Board implements ActionListener{
 			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
 			playarea.addsnake(snake);
 			playarea.addfood(food);
+			running = true; 
 			frame.repaint();
 			Easy.setEnabled(false);
 			Medium.setEnabled(false);
@@ -104,4 +107,17 @@ public class Board implements ActionListener{
 		}
 
 	}
+	public void run() {
+		while (running == true){
+			playarea.step();
+			frame.repaint();
+			try{
+				Thread.sleep(100);
+			}
+			catch(Exception ex){
+				ex.printStackTrace();
+			}
+		}
+	}
+
 }
