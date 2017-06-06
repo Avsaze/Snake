@@ -2,14 +2,17 @@ import java.awt.Color;
 import java.awt.Graphics;
 
 public class Snake {
-	int x = 10;
-	int y = 10;
+	int x;
+	int y;
 	int width = 10;
 	int height = 10;
 	int length;
-	public Snake (int newx, int newy) {
+	int speed;
+	public Snake (int newx, int newy, int newspeed) {
 		x = newx;
 		y = newy;
+		speed = newspeed;
+		
 	}
 	public void paintMe(Graphics g) {
 		g.setColor(Color.GREEN);
