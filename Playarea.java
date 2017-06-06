@@ -9,6 +9,10 @@ import javax.swing.JPanel;
 public class Playarea extends JPanel implements KeyListener{
 	ArrayList<Snake> snakes = new ArrayList<Snake>();
 	ArrayList<Food> foodz = new ArrayList<Food>();
+	boolean left = false;
+	boolean right = false;
+	boolean up = false;
+	boolean down = false;
 	public Playarea(){
 		super();
 		addKeyListener(this);
@@ -32,39 +36,51 @@ public class Playarea extends JPanel implements KeyListener{
 			foodz.get(a).paintMe(g);
 		}
 	}
-	@Override
-	public void keyPressed(KeyEvent e) {
-		int key = e.getKeyCode();
-		if (key == KeyEvent.VK_W) {
-			
-		}
-		else if (key == KeyEvent.VK_A) {
-			
-		}
-		else if (key == KeyEvent.VK_S) {
-			
-		}
-		else if (key == KeyEvent.VK_D) {
-			
-		}
-		
-	}
-	@Override
-	public void keyReleased(KeyEvent e) {
-	}
-	@Override
-	public void keyTyped(KeyEvent e) {		
-	}
 	public void step(){
 		for (int a = 0; a < snakes.size(); a++) {
 			Snake s = snakes.get(a);
-			if(collision){
-				//do something
+			if((snakes.get(0).getX() <= 0)||
+					(snakes.get(0).getX() >= getWidth())||
+					(snakes.get(0).getY() <= 0)||
+					(snakes.get(0).getY() >= getHeight())){
+					
+						}
 					}
 				}
-			}
 			else{
 				//move
 		}
+	
+	public void keyPressed(KeyEvent e) {
+		int key = e.getKeyCode();
+		if (key == KeyEvent.VK_W) {
+			up = true;
+			left = false;
+			down = false;
+			right = false;
+		}
+		else if (key == KeyEvent.VK_A) {
+			up = false;
+			left = true;
+			down = false;
+			right = false;
+		}
+		else if (key == KeyEvent.VK_S) {
+			up = false;
+			left = false;
+			down = true;
+			right = false;
+		}
+		else if (key == KeyEvent.VK_D) {
+			up = false;
+			left = false;
+			down = false;
+			right = true;
+		}
+		
+	}
+	public void keyReleased(KeyEvent e) {
+	}
+	public void keyTyped(KeyEvent e) {		
 	}
 }
