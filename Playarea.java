@@ -55,4 +55,16 @@ public class Playarea extends JPanel implements KeyListener{
 	@Override
 	public void keyTyped(KeyEvent e) {		
 	}
+	public void step(){
+		for (int a = 0; a < snakes.size(); a++) {
+			Snake s = snakes.get(a);
+			if(collision){
+				//do something
+					}
+				}
+			}
+			else{
+				//move
+		}
+	}
 }
