@@ -92,9 +92,7 @@ public class Board implements ActionListener, Runnable{
 				t.start();
 			}
 		}
-		if(playarea.foodz.isEmpty() == true){
-			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
-			playarea.addfood(food);
+		if (s.getX() == f.getX() && s.getY() == f.getY()){
 			score = score + 3;
 			Score = Integer.toString(score);
 			scorel.setText("Score: " + Score);
