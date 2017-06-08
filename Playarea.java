@@ -41,35 +41,29 @@ public class Playarea extends JPanel implements KeyListener {
 		}
 	}
 
-	public void step(){
+	public void step() {
 		for (int a = 0; a < snakes.size(); a++) {
 			Snake s = snakes.get(a);
-			if((snakes.get(0).getX() <= 0)||
-					(snakes.get(0).getX() >= getWidth())||
-					(snakes.get(0).getY() <= 0)||
-					(snakes.get(0).getY() >= getHeight())){
-					
-					}
-			else if (collision with self) {
-				
+			if ((snakes.get(a).getX() <= 0) || (snakes.get(a).getX() >= getWidth()) || (snakes.get(a).getY() <= 0)
+					|| (snakes.get(a).getY() >= getHeight())) {
+
 			}
+			// else if (collision with self) {
+
+			// }
 			else {
-					if (up == true) {
-						snakes.get(a).setY(snakes.get(a).getY() + snakes.get(a).getSpeed());
-					}
-					else if (down == true) {
-						snakes.get(a).setY(snakes.get(a).getY() - snakes.get(a).getSpeed());
-					}
-						else if (right == true) {
-							snakes.get(a).setX(snakes.get(a).getX() + snakes.get(a).getSpeed());
-						}
-						else if (left == true) {
-							snakes.get(a).setX(snakes.get(a).getX() - snakes.get(a).getSpeed());
-					
-						}
-					}
+				if (up == true) {
+					s.setY(s.getY() - s.getSpeed());
+				} else if (down == true) {
+					s.setY(s.getY() + s.getSpeed());
+				} else if (right == true) {
+					s.setX(s.getX() + s.getSpeed());
+				} else if (left == true) {
+					s.setX(s.getX() - s.getSpeed());
 				}
+			}
 		}
+	}
 
 	public void keyPressed(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -77,7 +71,7 @@ public class Playarea extends JPanel implements KeyListener {
 			up = true;
 			left = false;
 			down = false;
-			right = false;
+			right = false;  
 		} else if (key == KeyEvent.VK_A) {
 			up = false;
 			left = true;
