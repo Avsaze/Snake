@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Board implements ActionListener{
+public class Board implements ActionListener, Runnable{
 	int score = 0;
 	String Score = Integer.toString(score);
-	JFrame frame = new JFrame("Snake!");
+	static JFrame frame = new JFrame("Snake!");
 	Playarea playarea = new Playarea();
 	Container south = new Container();
 	JButton Easy = new JButton("Easy");
@@ -45,6 +45,10 @@ public class Board implements ActionListener{
 		frame.add(scorel, BorderLayout.NORTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()),10);
+		Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
+		playarea.addsnake(snake);
+		playarea.addfood(food);
 		frame.repaint();
 		
 	}
@@ -57,39 +61,36 @@ public class Board implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource().equals(Easy)){
 			dif = easy;
-			Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()),10);
-			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
-			playarea.addsnake(snake);
-			playarea.addfood(food);
-			running = true;
-			frame.repaint();
 			Easy.setEnabled(false);
 			Medium.setEnabled(false);
 			Hard.setEnabled(false);
+			if (running == false) {
+				running = true;
+				Thread t = new Thread(this);
+				t.start();
+			}
 		}
 		if(e.getSource().equals(Medium)){
 			dif = med;
-			Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()),10);
-			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
-			playarea.addsnake(snake);
-			playarea.addfood(food);
-			running = true;
-			frame.repaint();
 			Easy.setEnabled(false);
 			Medium.setEnabled(false);
 			Hard.setEnabled(false);
+			if (running == false) {
+				running = true;
+				Thread t = new Thread(this);
+				t.start();
+			}
 		}
 		if(e.getSource().equals(Hard)){
 			dif = hard;
-			Snake snake = new Snake((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()),10);
-			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
-			playarea.addsnake(snake);
-			playarea.addfood(food);
-			running = true; 
-			frame.repaint();
 			Easy.setEnabled(false);
 			Medium.setEnabled(false);
 			Hard.setEnabled(false);
+			if (running == false) {
+				running = true;
+				Thread t = new Thread(this);
+				t.start();
+			}
 		}
 		if(playarea.foodz.isEmpty() == true){
 			Food food = new Food((int)(Math.random()* playarea.getWidth()),(int)(Math.random()* playarea.getHeight()));
@@ -99,25 +100,27 @@ public class Board implements ActionListener{
 			scorel.setText("Score: " + Score);
 			frame.repaint();
 		}
-		if((playarea.snakes.get(0).getX() <= 0)||
-			(playarea.snakes.get(0).getX() >= playarea.getWidth())||
-			(playarea.snakes.get(0).getY() <= 0)||
-			(playarea.snakes.get(0).getY() >= playarea.getHeight())){
-			
-		}
+		
 
 	}
 	public void run() {
-		while (running == true){
+		while(running == true){
 			playarea.step();
 			frame.repaint();
 			try{
+			if (dif == easy) {
 				Thread.sleep(100);
+				}
+				else if (dif == med) {
+					Thread.sleep(50);
+				}
+				else if (dif == hard) {
+					Thread.sleep(25);
+				}
 			}
 			catch(Exception ex){
 				ex.printStackTrace();
 			}
 		}
 	}
-
 }
