@@ -44,9 +44,15 @@ public class Playarea extends JPanel implements KeyListener {
 	public void step() {
 		for (int a = 0; a < snakes.size(); a++) {
 			Snake s = snakes.get(a);
-			if ((snakes.get(a).getX() <= 0) || (snakes.get(a).getX() >= getWidth()) || (snakes.get(a).getY() <= 0)
-					|| (snakes.get(a).getY() >= getHeight())) {
-
+			Food f = foodz.get(a);
+			if (s.getX() == f.getX() && s.getY() == f.getY()) {
+				Food food = new Food((int)(Math.random()* getWidth()),(int)(Math.random()* getHeight()));
+				foodz.remove(a);
+				foodz.add(food);
+				System.out.println("collsion man");
+			}
+			if ((s.getX() <= 0) || (s.getX() >= getWidth()) || (s.getY() <= 0) || (s.getY() >= getHeight())) {
+				System.out.println("game over man");
 			}
 			// else if (collision with self) {
 
@@ -71,7 +77,7 @@ public class Playarea extends JPanel implements KeyListener {
 			up = true;
 			left = false;
 			down = false;
-			right = false;  
+			right = false;
 		} else if (key == KeyEvent.VK_A) {
 			up = false;
 			left = true;
