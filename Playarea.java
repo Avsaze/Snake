@@ -57,7 +57,7 @@ public class Playarea extends JPanel implements KeyListener {
 			Body b = null;
 			if (s.getX() == f.getX() && s.getY() == f.getY()) {
 				Food food = new Food((int)(10*(Math.round((Math.random()* getWidth())/10))),(int)(10*(Math.round((Math.random()* getHeight())/10))));
-				if (body != null) {
+				if (body.isEmpty() == true) {
 					System.out.println("array list is null");
 					if (up == true) {
 						b = new Body(s.getX(),s.getY()+s.getSpeed());
@@ -90,14 +90,35 @@ public class Playarea extends JPanel implements KeyListener {
 
 			// }
 			else {
+				Body u = null;
 				if (up == true) {
 					s.setY(s.getY() - s.getSpeed());
+					if (body.isEmpty() == false) {
+						u = body.get(0);
+						u.setX(s.getX());
+						u.setY(s.getY()+s.getSpeed());
+					}
 				} else if (down == true) {
 					s.setY(s.getY() + s.getSpeed());
+					if (body.isEmpty() == false) {
+						u = body.get(0);
+						u.setX(s.getX());
+						u.setY(s.getY()-s.getSpeed());
+					}
 				} else if (right == true) {
 					s.setX(s.getX() + s.getSpeed());
+					if (body.isEmpty() == false) {
+						u = body.get(0);
+						u.setX(s.getX() - s.getSpeed());
+						u.setY(s.getY());
+					}
 				} else if (left == true) {
 					s.setX(s.getX() - s.getSpeed());
+					if (body.isEmpty() == false) {
+						u = body.get(0);
+						u.setX(s.getX() + s.getSpeed());
+						u.setY(s.getY());
+					}
 				}
 			}
 		}
