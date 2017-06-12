@@ -6,7 +6,6 @@ public class Snake {
 	int y;
 	int width = 10;
 	int height = 10;
-	int length;
 	int speed;
 	public Snake (int newx, int newy, int newspeed) {
 		x = newx;
@@ -29,11 +28,5 @@ public class Snake {
 	}
 	public void setY(int y) {
 		this.y = y;
-	}
-	public int getLength() {
-		return length;
-	}
-	public void setLength(int length) {
-		this.length = length;
 	}
 }
