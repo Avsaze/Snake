@@ -73,8 +73,19 @@ public class Playarea extends JPanel implements KeyListener {
 					}
 				}
 				else {
-					//add if there is already a body created
-					System.out.println("array list is exists");
+					if (up == true) {
+						b = new Body(body.get(body.size()-1).getX(),body.get(body.size()-1).getY() + s.getSpeed());
+					}
+					else if (down == true) {
+						b = new Body(body.get(body.size()-1).getX(),body.get(body.size()-1).getY() - s.getSpeed());
+					}
+					else if (right == false) {
+						b = new Body(body.get(body.size()-1).getX() + s.getSpeed(),body.get(body.size()-1).getY());
+					}
+					else if (left == false) {
+						b = new Body(body.get(body.size()-1).getX() - s.getSpeed(),body.get(body.size()-1).getY());
+					}
+					body.add(b);
 				}
 				foodz.remove(a);
 				foodz.add(food);
@@ -98,21 +109,24 @@ public class Playarea extends JPanel implements KeyListener {
 						u.setX(s.getX());
 						u.setY(s.getY()+s.getSpeed());
 					}
-				} else if (down == true) {
+				} 
+				else if (down == true) {
 					s.setY(s.getY() + s.getSpeed());
 					if (body.isEmpty() == false) {
 						u = body.get(0);
 						u.setX(s.getX());
 						u.setY(s.getY()-s.getSpeed());
 					}
-				} else if (right == true) {
+				} 
+				else if (right == true) {
 					s.setX(s.getX() + s.getSpeed());
 					if (body.isEmpty() == false) {
 						u = body.get(0);
 						u.setX(s.getX() - s.getSpeed());
 						u.setY(s.getY());
 					}
-				} else if (left == true) {
+				} 
+				else if (left == true) {
 					s.setX(s.getX() - s.getSpeed());
 					if (body.isEmpty() == false) {
 						u = body.get(0);
