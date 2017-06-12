@@ -13,15 +13,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 public class Board implements ActionListener, Runnable{
-	int score = 0;
-	String Score = Integer.toString(score);
 	static JFrame frame = new JFrame("Snake!");
 	Playarea playarea = new Playarea();
 	Container south = new Container();
 	JButton Easy = new JButton("Easy");
 	JButton Medium = new JButton("Medium");
 	JButton Hard = new JButton("Hard");
-	JLabel scorel = new JLabel("Score: " + Score);
+	JLabel scorel = new JLabel("Score: " + playarea.Score);
 	final int undecided =0;
 	final int easy = 1;
 	final int med = 2;
@@ -40,7 +38,7 @@ public class Board implements ActionListener, Runnable{
 		Easy.addActionListener(this);
 		south.add(Medium);
 		Medium.addActionListener(this);
-		south.add(Hard);
+		south.add(Hard); 
 		Hard.addActionListener(this);
 		frame.add(scorel, BorderLayout.NORTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -92,14 +90,6 @@ public class Board implements ActionListener, Runnable{
 				t.start();
 			}
 		}
-		if (s.getX() == f.getX() && s.getY() == f.getY()){
-			score = score + 3;
-			Score = Integer.toString(score);
-			scorel.setText("Score: " + Score);
-			frame.repaint();
-		}
-		
-
 	}
 	public void run() {
 		while(running == true){
