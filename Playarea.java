@@ -105,22 +105,38 @@ public class Playarea extends JPanel implements KeyListener {
 				if (up == true) {
 					s.setY(s.getY() - s.getSpeed());
 					if (body.isEmpty() == false) {
+						for (int i = 1; i < body.size(); i++) {
+							u = body.get(i);
+							u.setX(body.get(i-1).getX());
+							u.setY(body.get(i-1).getY());
+						}
 						u = body.get(0);
 						u.setX(s.getX());
 						u.setY(s.getY()+s.getSpeed());
+						
 					}
 				} 
 				else if (down == true) {
 					s.setY(s.getY() + s.getSpeed());
 					if (body.isEmpty() == false) {
+						for (int i = 1; i < body.size(); i++) {
+							u = body.get(i);
+							u.setX(body.get(i-1).getX());
+							u.setY(body.get(i-1).getY());
+						}
 						u = body.get(0);
 						u.setX(s.getX());
-						u.setY(s.getY()-s.getSpeed());
+						u.setY(s.getY()-s.getSpeed());						
 					}
 				} 
 				else if (right == true) {
 					s.setX(s.getX() + s.getSpeed());
 					if (body.isEmpty() == false) {
+						for (int i = 1; i < body.size(); i++) {
+							u = body.get(i);
+							u.setX(body.get(i-1).getX());
+							u.setY(body.get(i-1).getY());
+						}
 						u = body.get(0);
 						u.setX(s.getX() - s.getSpeed());
 						u.setY(s.getY());
@@ -129,6 +145,11 @@ public class Playarea extends JPanel implements KeyListener {
 				else if (left == true) {
 					s.setX(s.getX() - s.getSpeed());
 					if (body.isEmpty() == false) {
+						for (int i = 1; i < body.size(); i++) {
+							u = body.get(i);
+							u.setX(body.get(i-1).getX());
+							u.setY(body.get(i-1).getY());
+						}
 						u = body.get(0);
 						u.setX(s.getX() + s.getSpeed());
 						u.setY(s.getY());
