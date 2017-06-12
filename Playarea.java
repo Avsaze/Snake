@@ -13,6 +13,8 @@ public class Playarea extends JPanel implements KeyListener {
 	boolean right = false;
 	boolean up = false;
 	boolean down = false;
+	int score = 0;
+	String Score = Integer.toString(score);
 
 	public Playarea() {
 		super();
@@ -46,9 +48,11 @@ public class Playarea extends JPanel implements KeyListener {
 			Snake s = snakes.get(a);
 			Food f = foodz.get(a);
 			if (s.getX() == f.getX() && s.getY() == f.getY()) {
-				Food food = new Food((int)(Math.random()* getWidth()),(int)(Math.random()* getHeight()));
+				Food food = new Food((int)(10*(Math.round((Math.random()* getWidth())/10))),(int)(10*(Math.round((Math.random()* getHeight())/10))));
 				foodz.remove(a);
 				foodz.add(food);
+				score = score + 3;
+				Score = Integer.toString(score);
 				System.out.println("collsion man");
 			}
 			if ((s.getX() <= 0) || (s.getX() >= getWidth()) || (s.getY() <= 0) || (s.getY() >= getHeight())) {
@@ -69,6 +73,14 @@ public class Playarea extends JPanel implements KeyListener {
 				}
 			}
 		}
+	}
+
+	public String getScore() {
+		return Score;
+	}
+
+	public void setScore(String score) {
+		Score = score;
 	}
 
 	public void keyPressed(KeyEvent e) {
