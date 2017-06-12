@@ -45,6 +45,9 @@ public class Playarea extends JPanel implements KeyListener {
 		for (int a = 0; a < foodz.size(); a++) {
 			foodz.get(a).paintMe(g);
 		}
+		for (int i = 0; i < body.size(); i++) {
+			body.get(i).paintMe(g);
+		}
 	}
 
 	public void step() {
@@ -54,7 +57,8 @@ public class Playarea extends JPanel implements KeyListener {
 			Body b = null;
 			if (s.getX() == f.getX() && s.getY() == f.getY()) {
 				Food food = new Food((int)(10*(Math.round((Math.random()* getWidth())/10))),(int)(10*(Math.round((Math.random()* getHeight())/10))));
-				if (body == null) {
+				if (body != null) {
+					System.out.println("array list is null");
 					if (up == true) {
 						b = new Body(s.getX(),s.getY()+s.getSpeed());
 					}
@@ -70,6 +74,7 @@ public class Playarea extends JPanel implements KeyListener {
 				}
 				else {
 					//add if there is already a body created
+					System.out.println("array list is exists");
 				}
 				foodz.remove(a);
 				foodz.add(food);
