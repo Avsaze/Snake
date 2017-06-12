@@ -83,7 +83,7 @@ public class Playarea extends JPanel implements KeyListener {
 				Score = Integer.toString(score);
 				System.out.println("collsion man");
 			}
-			if ((s.getX() <= 0) || (s.getX() >= getWidth()) || (s.getY() <= 0) || (s.getY() >= getHeight())) {
+			if ((s.getX() <= -10) || (s.getX() >= getWidth()-5) || (s.getY() <= -10) || (s.getY() >= getHeight()+10)) {
 				System.out.println("game over man");
 			}
 			// else if (collision with self) {
