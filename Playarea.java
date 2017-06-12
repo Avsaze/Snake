@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 public class Playarea extends JPanel implements KeyListener {
 	ArrayList<Snake> snakes = new ArrayList<Snake>();
 	ArrayList<Food> foodz = new ArrayList<Food>();
+	ArrayList<Body> body = new ArrayList<Body>();
 	boolean left = false;
 	boolean right = false;
 	boolean up = false;
@@ -30,6 +31,9 @@ public class Playarea extends JPanel implements KeyListener {
 	public void addfood(Food f) {
 		foodz.add(f);
 	}
+	public void addBody(Body b) {
+		body.add(b);
+	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -47,10 +51,29 @@ public class Playarea extends JPanel implements KeyListener {
 		for (int a = 0; a < snakes.size(); a++) {
 			Snake s = snakes.get(a);
 			Food f = foodz.get(a);
+			Body b = null;
 			if (s.getX() == f.getX() && s.getY() == f.getY()) {
 				Food food = new Food((int)(10*(Math.round((Math.random()* getWidth())/10))),(int)(10*(Math.round((Math.random()* getHeight())/10))));
+				if (body == null) {
+					if (up == true) {
+						b = new Body(s.getX(),s.getY()+s.getSpeed());
+					}
+					else if (down == true) {
+						b = new Body(s.getX(),s.getY()-s.getSpeed());
+					}
+					else if (left == true) {
+						b = new Body(s.getX()+s.getSpeed(),s.getY());
+					}
+					else if (right == true) {
+						b = new Body(s.getX()-s.getSpeed(),s.getY());
+					}
+				}
+				else {
+					//add if there is already a body created
+				}
 				foodz.remove(a);
 				foodz.add(food);
+				body.add(b);
 				score = score + 3;
 				Score = Integer.toString(score);
 				System.out.println("collsion man");
