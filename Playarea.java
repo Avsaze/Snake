@@ -14,7 +14,7 @@ public class Playarea extends JPanel implements KeyListener {
 	boolean right = false;
 	boolean up = false;
 	boolean down = false;
-	int score = 0;
+	int score = 1;
 	String Score = Integer.toString(score);
 
 	public Playarea() {
@@ -90,7 +90,7 @@ public class Playarea extends JPanel implements KeyListener {
 					foodz.remove(a);
 					foodz.add(food);
 					body.add(b);
-					score = score + 3;
+					score++;
 					Score = Integer.toString(score);
 					System.out.println("collsion man");
 					System.out.println(body.size());
@@ -98,9 +98,6 @@ public class Playarea extends JPanel implements KeyListener {
 				if ((s.getX() <= -10) || (s.getX() >= getWidth()-5) || (s.getY() <= -10) || (s.getY() >= getHeight()+10)) {
 					System.out.println("game over man");
 				}
-				// else if (collision with self) {
-
-				// }
 				else {
 					Body u = null;
 					if (up == true) {
