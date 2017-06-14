@@ -41,6 +41,7 @@ public class Board implements ActionListener, Runnable{
 		south.add(Hard); 
 		Hard.addActionListener(this);
 		frame.add(scorel, BorderLayout.NORTH);
+		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		Snake snake = new Snake((int)(10*(Math.round((Math.random()* 400))/10)),(int)(10*(Math.round((Math.random()* 400)/10))),10);
