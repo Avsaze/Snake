@@ -51,112 +51,128 @@ public class Playarea extends JPanel implements KeyListener {
 	}
 
 	public void step() {
-		for (int a = 0; a < snakes.size(); a++) {
-			Snake s = snakes.get(a);
-			Food f = foodz.get(a);
-			Body b = null;
-			if (s.getX() == f.getX() && s.getY() == f.getY()) {
-				Food food = new Food((int)(10*(Math.round((Math.random()* getWidth())/10))),(int)(10*(Math.round((Math.random()* getHeight())/10))));
-				if (body.isEmpty() == true) {
-					System.out.println("array list is null");
-					if (up == true) {
-						b = new Body(s.getX(),s.getY()+s.getSpeed());
+		if (collisionself() == false) {
+			for (int a = 0; a < snakes.size(); a++) {
+				Snake s = snakes.get(a);
+				Food f = foodz.get(a);
+				Body b = null;
+				if (s.getX() == f.getX() && s.getY() == f.getY()) {
+					Food food = new Food((int)(10*(Math.round((Math.random()* getWidth())/10))),(int)(10*(Math.round((Math.random()* getHeight())/10))));
+					if (body.isEmpty() == true) {
+						System.out.println("array list is null");
+						if (up == true) {
+							b = new Body(s.getX(),s.getY()+s.getSpeed());
+						}
+						else if (down == true) {
+							b = new Body(s.getX(),s.getY()-s.getSpeed());
+						}
+						else if (left == true) {
+							b = new Body(s.getX()+s.getSpeed(),s.getY());
+						}
+						else if (right == true) {
+							b = new Body(s.getX()-s.getSpeed(),s.getY());
+						}
 					}
-					else if (down == true) {
-						b = new Body(s.getX(),s.getY()-s.getSpeed());
+					else {
+						if (up == true) {
+							b = new Body(body.get(body.size()-1).getX(),body.get(body.size()-1).getY() + s.getSpeed());
+						}
+						else if (down == true) {
+							b = new Body(body.get(body.size()-1).getX(),body.get(body.size()-1).getY() - s.getSpeed());
+						}
+						else if (right == false) {
+							b = new Body(body.get(body.size()-1).getX() + s.getSpeed(),body.get(body.size()-1).getY());
+						}
+						else if (left == false) {
+							b = new Body(body.get(body.size()-1).getX() - s.getSpeed(),body.get(body.size()-1).getY());
+						}
 					}
-					else if (left == true) {
-						b = new Body(s.getX()+s.getSpeed(),s.getY());
-					}
-					else if (right == true) {
-						b = new Body(s.getX()-s.getSpeed(),s.getY());
-					}
+					foodz.remove(a);
+					foodz.add(food);
+					body.add(b);
+					score = score + 3;
+					Score = Integer.toString(score);
+					System.out.println("collsion man");
+					System.out.println(body.size());
 				}
-				else {
-					if (up == true) {
-						b = new Body(body.get(body.size()-1).getX(),body.get(body.size()-1).getY() + s.getSpeed());
-					}
-					else if (down == true) {
-						b = new Body(body.get(body.size()-1).getX(),body.get(body.size()-1).getY() - s.getSpeed());
-					}
-					else if (right == false) {
-						b = new Body(body.get(body.size()-1).getX() + s.getSpeed(),body.get(body.size()-1).getY());
-					}
-					else if (left == false) {
-						b = new Body(body.get(body.size()-1).getX() - s.getSpeed(),body.get(body.size()-1).getY());
-					}
+				if ((s.getX() <= -10) || (s.getX() >= getWidth()-5) || (s.getY() <= -10) || (s.getY() >= getHeight()+10)) {
+					System.out.println("game over man");
 				}
-				foodz.remove(a);
-				foodz.add(food);
-				body.add(b);
-				score = score + 3;
-				Score = Integer.toString(score);
-				System.out.println("collsion man");
-				System.out.println(body.size());
-			}
-			if ((s.getX() <= -10) || (s.getX() >= getWidth()-5) || (s.getY() <= -10) || (s.getY() >= getHeight()+10)) {
-				System.out.println("game over man");
-			}
-			// else if (collision with self) {
+				// else if (collision with self) {
 
-			// }
-			else {
-				Body u = null;
-				if (up == true) {
-					s.setY(s.getY() - s.getSpeed());
-					if (body.isEmpty() == false) {
-						for (int i = 1; i < body.size(); i++) {
-							u = body.get(i);
-							u.setX(body.get(i-1).getX());
-							u.setY(body.get(i-1).getY());
+				// }
+				else {
+					Body u = null;
+					if (up == true) {
+						s.setY(s.getY() - s.getSpeed());
+						if (body.isEmpty() == false) {
+							for (int i = 1; i < body.size(); i++) {
+								u = body.get(i);
+								u.setX(body.get(i-1).getX());
+								u.setY(body.get(i-1).getY());
+							}
+							u = body.get(0);
+							u.setX(s.getX());
+							u.setY(s.getY()+s.getSpeed());
+
 						}
-						u = body.get(0);
-						u.setX(s.getX());
-						u.setY(s.getY()+s.getSpeed());
-						
-					}
-				} 
-				else if (down == true) {
-					s.setY(s.getY() + s.getSpeed());
-					if (body.isEmpty() == false) {
-						for (int i = 1; i < body.size(); i++) {
-							u = body.get(i);
-							u.setX(body.get(i-1).getX());
-							u.setY(body.get(i-1).getY());
+					} 
+					else if (down == true) {
+						s.setY(s.getY() + s.getSpeed());
+						if (body.isEmpty() == false) {
+							for (int i = 1; i < body.size(); i++) {
+								u = body.get(i);
+								u.setX(body.get(i-1).getX());
+								u.setY(body.get(i-1).getY());
+							}
+							u = body.get(0);
+							u.setX(s.getX());
+							u.setY(s.getY()-s.getSpeed());						
 						}
-						u = body.get(0);
-						u.setX(s.getX());
-						u.setY(s.getY()-s.getSpeed());						
-					}
-				} 
-				else if (right == true) {
-					s.setX(s.getX() + s.getSpeed());
-					if (body.isEmpty() == false) {
-						for (int i = 1; i < body.size(); i++) {
-							u = body.get(i);
-							u.setX(body.get(i-1).getX());
-							u.setY(body.get(i-1).getY());
+					} 
+					else if (right == true) {
+						s.setX(s.getX() + s.getSpeed());
+						if (body.isEmpty() == false) {
+							for (int i = 1; i < body.size(); i++) {
+								u = body.get(i);
+								u.setX(body.get(i-1).getX());
+								u.setY(body.get(i-1).getY());
+							}
+							u = body.get(0);
+							u.setX(s.getX() - s.getSpeed());
+							u.setY(s.getY());
 						}
-						u = body.get(0);
-						u.setX(s.getX() - s.getSpeed());
-						u.setY(s.getY());
-					}
-				} 
-				else if (left == true) {
-					s.setX(s.getX() - s.getSpeed());
-					if (body.isEmpty() == false) {
-						for (int i = 1; i < body.size(); i++) {
-							u = body.get(i);
-							u.setX(body.get(i-1).getX());
-							u.setY(body.get(i-1).getY());
+					} 
+					else if (left == true) {
+						s.setX(s.getX() - s.getSpeed());
+						if (body.isEmpty() == false) {
+							for (int i = 1; i < body.size(); i++) {
+								u = body.get(i);
+								u.setX(body.get(i-1).getX());
+								u.setY(body.get(i-1).getY());
+							}
+							u = body.get(0);
+							u.setX(s.getX() + s.getSpeed());
+							u.setY(s.getY());
 						}
-						u = body.get(0);
-						u.setX(s.getX() + s.getSpeed());
-						u.setY(s.getY());
 					}
 				}
 			}
 		}
+		else{
+		JOptionPane.showMessageDialog(Board.frame, "You Lose Sucker!");	
+		}
+	}
+	public boolean collisionself() {
+		for (int c = 0; c < body.size(); c++){
+			Snake s = snakes.get(0);
+			int x = body.get(c).getX();
+			int y = body.get(c).getY();
+			if(x == s.getX()||y == s.getY()){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public String getScore() {
