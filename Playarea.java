@@ -85,7 +85,6 @@ public class Playarea extends JPanel implements KeyListener {
 					else if (left == false) {
 						b = new Body(body.get(body.size()-1).getX() - s.getSpeed(),body.get(body.size()-1).getY());
 					}
-					body.add(b);
 				}
 				foodz.remove(a);
 				foodz.add(food);
@@ -93,6 +92,7 @@ public class Playarea extends JPanel implements KeyListener {
 				score = score + 3;
 				Score = Integer.toString(score);
 				System.out.println("collsion man");
+				System.out.println(body.size());
 			}
 			if ((s.getX() <= -10) || (s.getX() >= getWidth()-5) || (s.getY() <= -10) || (s.getY() >= getHeight()+10)) {
 				System.out.println("game over man");
