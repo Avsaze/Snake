@@ -59,8 +59,7 @@ public class Playarea extends JPanel implements KeyListener {
 				Food f = foodz.get(a);
 				Body b = null;
 				if (s.getX() == f.getX() && s.getY() == f.getY()) {
-					Food food = new Food((int) (10 * (Math.round((Math.random() * getWidth()) / 10))),
-							(int) (10 * (Math.round((Math.random() * getHeight()) / 10))));
+					Food food = new Food((int) (10*(Math.round((Math.random()* 400))/10)),(int)(10*(Math.round((Math.random()* 400)/10))));
 					if (body.isEmpty() == true) {
 						System.out.println("array list is null");
 						if (up == true) {
