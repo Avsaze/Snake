@@ -29,7 +29,7 @@ public class Board implements ActionListener, Runnable{
 	
 	
 	public Board(){
-		frame.setSize(1000,1000);
+		frame.setSize(500,500);
 		frame.setLayout(new BorderLayout());
 		frame.add(playarea, BorderLayout.CENTER);
 		frame.add(south, BorderLayout.SOUTH);
@@ -98,7 +98,7 @@ public class Board implements ActionListener, Runnable{
 			frame.repaint();
 			try{
 			if (dif == easy) {
-				Thread.sleep(100);
+				Thread.sleep(75);
 				}
 				else if (dif == med) {
 					Thread.sleep(50);
