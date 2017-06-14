@@ -43,8 +43,8 @@ public class Board implements ActionListener, Runnable{
 		frame.add(scorel, BorderLayout.NORTH);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		Snake snake = new Snake((int)(10*(Math.round((Math.random()* playarea.getWidth())/10))),(int)(10*(Math.round((Math.random()* playarea.getHeight())/10))),10);
-		Food food = new Food((int)(10*(Math.round((Math.random()* playarea.getWidth())/10))),(int)(10*(Math.round((Math.random()* playarea.getHeight())/10))));
+		Snake snake = new Snake((int)(10*(Math.round((Math.random()* 500))/10)),(int)(10*(Math.round((Math.random()* 500)/10))),10);
+		Food food = new Food((int)(10*(Math.round((Math.random()* 500))/10)),(int)(10*(Math.round((Math.random()* 500)/10))));
 		playarea.addsnake(snake);
 		playarea.addfood(food);
 		frame.repaint();
