@@ -51,7 +51,7 @@ public class Playarea extends JPanel implements KeyListener {
 	}
 
 	public void step() {
-		if (collisionself() == false) {
+		//if (collisionself() == true) {
 			for (int a = 0; a < snakes.size(); a++) {
 				Snake s = snakes.get(a);
 				Food f = foodz.get(a);
@@ -103,7 +103,7 @@ public class Playarea extends JPanel implements KeyListener {
 					if (up == true) {
 						s.setY(s.getY() - s.getSpeed());
 						if (body.isEmpty() == false) {
-							for (int i = 1; i < body.size(); i++) {
+							for (int i = body.size()-1; i > 0; i--) {
 								u = body.get(i);
 								u.setX(body.get(i-1).getX());
 								u.setY(body.get(i-1).getY());
@@ -117,7 +117,7 @@ public class Playarea extends JPanel implements KeyListener {
 					else if (down == true) {
 						s.setY(s.getY() + s.getSpeed());
 						if (body.isEmpty() == false) {
-							for (int i = 1; i < body.size(); i++) {
+							for (int i = body.size()-1; i > 0; i--) {
 								u = body.get(i);
 								u.setX(body.get(i-1).getX());
 								u.setY(body.get(i-1).getY());
@@ -130,7 +130,7 @@ public class Playarea extends JPanel implements KeyListener {
 					else if (right == true) {
 						s.setX(s.getX() + s.getSpeed());
 						if (body.isEmpty() == false) {
-							for (int i = 1; i < body.size(); i++) {
+							for (int i = body.size()-1; i > 0; i--) {
 								u = body.get(i);
 								u.setX(body.get(i-1).getX());
 								u.setY(body.get(i-1).getY());
@@ -143,7 +143,7 @@ public class Playarea extends JPanel implements KeyListener {
 					else if (left == true) {
 						s.setX(s.getX() - s.getSpeed());
 						if (body.isEmpty() == false) {
-							for (int i = 1; i < body.size(); i++) {
+							for (int i = body.size()-1; i > 0; i--) {
 								u = body.get(i);
 								u.setX(body.get(i-1).getX());
 								u.setY(body.get(i-1).getY());
@@ -155,10 +155,10 @@ public class Playarea extends JPanel implements KeyListener {
 					}
 				}
 			}
-		}
+		/*}
 		else{
 		JOptionPane.showMessageDialog(Board.frame, "You Lose Sucker!");	
-		}
+		}*/
 	}
 	public boolean collisionself() {
 		for (int c = 0; c < body.size(); c++){
