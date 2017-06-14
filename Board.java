@@ -94,6 +94,7 @@ public class Board implements ActionListener, Runnable{
 	public void run() {
 		while(running == true){
 			playarea.step();
+			scorel.setText(playarea.getScore());
 			frame.repaint();
 			try{
 			if (dif == easy) {
