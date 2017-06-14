@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Playarea extends JPanel implements KeyListener {
@@ -31,6 +32,7 @@ public class Playarea extends JPanel implements KeyListener {
 	public void addfood(Food f) {
 		foodz.add(f);
 	}
+
 	public void addBody(Body b) {
 		body.add(b);
 	}
@@ -51,40 +53,45 @@ public class Playarea extends JPanel implements KeyListener {
 	}
 
 	public void step() {
-		//if (collisionself() == true) {
+		if (collisionself() == false) {
 			for (int a = 0; a < snakes.size(); a++) {
 				Snake s = snakes.get(a);
 				Food f = foodz.get(a);
 				Body b = null;
 				if (s.getX() == f.getX() && s.getY() == f.getY()) {
-					Food food = new Food((int)(10*(Math.round((Math.random()* getWidth())/10))),(int)(10*(Math.round((Math.random()* getHeight())/10))));
+					Food food = new Food((int) (10 * (Math.round((Math.random() * getWidth()) / 10))),
+							(int) (10 * (Math.round((Math.random() * getHeight()) / 10))));
 					if (body.isEmpty() == true) {
 						System.out.println("array list is null");
 						if (up == true) {
-							b = new Body(s.getX(),s.getY()+s.getSpeed());
-						}
+							b = new Body(s.getX(), s.getY() + s.getSpeed());
+						} 
 						else if (down == true) {
-							b = new Body(s.getX(),s.getY()-s.getSpeed());
-						}
+							b = new Body(s.getX(), s.getY() - s.getSpeed());
+						} 
 						else if (left == true) {
-							b = new Body(s.getX()+s.getSpeed(),s.getY());
-						}
+							b = new Body(s.getX() + s.getSpeed(), s.getY());
+						} 
 						else if (right == true) {
-							b = new Body(s.getX()-s.getSpeed(),s.getY());
+							b = new Body(s.getX() - s.getSpeed(), s.getY());
 						}
-					}
+					} 
 					else {
 						if (up == true) {
-							b = new Body(body.get(body.size()-1).getX(),body.get(body.size()-1).getY() + s.getSpeed());
-						}
+							b = new Body(body.get(body.size() - 1).getX(),
+									body.get(body.size() - 1).getY() + s.getSpeed());
+						} 
 						else if (down == true) {
-							b = new Body(body.get(body.size()-1).getX(),body.get(body.size()-1).getY() - s.getSpeed());
-						}
+							b = new Body(body.get(body.size() - 1).getX(),
+									body.get(body.size() - 1).getY() - s.getSpeed());
+						} 
 						else if (right == false) {
-							b = new Body(body.get(body.size()-1).getX() + s.getSpeed(),body.get(body.size()-1).getY());
-						}
+							b = new Body(body.get(body.size() - 1).getX() + s.getSpeed(),
+									body.get(body.size() - 1).getY());
+						} 
 						else if (left == false) {
-							b = new Body(body.get(body.size()-1).getX() - s.getSpeed(),body.get(body.size()-1).getY());
+							b = new Body(body.get(body.size() - 1).getX() - s.getSpeed(),
+									body.get(body.size() - 1).getY());
 						}
 					}
 					foodz.remove(a);
@@ -95,45 +102,46 @@ public class Playarea extends JPanel implements KeyListener {
 					System.out.println("collsion man");
 					System.out.println(body.size());
 				}
-				if ((s.getX() <= -10) || (s.getX() >= getWidth()-5) || (s.getY() <= -10) || (s.getY() >= getHeight()+10)) {
+				if ((s.getX() <= -10) || (s.getX() >= getWidth() - 5) || (s.getY() <= -10)
+						|| (s.getY() >= getHeight() + 10)) {
 					System.out.println("game over man");
-				}
+				} 
 				else {
 					Body u = null;
 					if (up == true) {
 						s.setY(s.getY() - s.getSpeed());
 						if (body.isEmpty() == false) {
-							for (int i = body.size()-1; i > 0; i--) {
+							for (int i = body.size() - 1; i > 0; i--) {
 								u = body.get(i);
-								u.setX(body.get(i-1).getX());
-								u.setY(body.get(i-1).getY());
+								u.setX(body.get(i - 1).getX());
+								u.setY(body.get(i - 1).getY());
 							}
 							u = body.get(0);
 							u.setX(s.getX());
-							u.setY(s.getY()+s.getSpeed());
+							u.setY(s.getY() + s.getSpeed());
 
 						}
 					} 
 					else if (down == true) {
 						s.setY(s.getY() + s.getSpeed());
 						if (body.isEmpty() == false) {
-							for (int i = body.size()-1; i > 0; i--) {
+							for (int i = body.size() - 1; i > 0; i--) {
 								u = body.get(i);
-								u.setX(body.get(i-1).getX());
-								u.setY(body.get(i-1).getY());
+								u.setX(body.get(i - 1).getX());
+								u.setY(body.get(i - 1).getY());
 							}
 							u = body.get(0);
 							u.setX(s.getX());
-							u.setY(s.getY()-s.getSpeed());						
+							u.setY(s.getY() - s.getSpeed());
 						}
 					} 
 					else if (right == true) {
 						s.setX(s.getX() + s.getSpeed());
 						if (body.isEmpty() == false) {
-							for (int i = body.size()-1; i > 0; i--) {
+							for (int i = body.size() - 1; i > 0; i--) {
 								u = body.get(i);
-								u.setX(body.get(i-1).getX());
-								u.setY(body.get(i-1).getY());
+								u.setX(body.get(i - 1).getX());
+								u.setY(body.get(i - 1).getY());
 							}
 							u = body.get(0);
 							u.setX(s.getX() - s.getSpeed());
@@ -143,10 +151,10 @@ public class Playarea extends JPanel implements KeyListener {
 					else if (left == true) {
 						s.setX(s.getX() - s.getSpeed());
 						if (body.isEmpty() == false) {
-							for (int i = body.size()-1; i > 0; i--) {
+							for (int i = body.size() - 1; i > 0; i--) {
 								u = body.get(i);
-								u.setX(body.get(i-1).getX());
-								u.setY(body.get(i-1).getY());
+								u.setX(body.get(i - 1).getX());
+								u.setY(body.get(i - 1).getY());
 							}
 							u = body.get(0);
 							u.setX(s.getX() + s.getSpeed());
@@ -155,18 +163,21 @@ public class Playarea extends JPanel implements KeyListener {
 					}
 				}
 			}
-		/*}
-		else{
-		JOptionPane.showMessageDialog(Board.frame, "You Lose Sucker!");	
-		}*/
+		} 
+		else {
+			JOptionPane.showMessageDialog(Board.frame, "You Lose!");
+		}
 	}
+
 	public boolean collisionself() {
-		for (int c = 0; c < body.size(); c++){
+		Body b = null;
+		if (body.isEmpty() == false) {
+		for (int i = 0; i < body.size(); i++) {
+			b = body.get(i);
 			Snake s = snakes.get(0);
-			int x = body.get(c).getX();
-			int y = body.get(c).getY();
-			if(x == s.getX()||y == s.getY()){
-				return true;
+				if (s.getX() == b.getX() && s.getY() == b.getY()) {
+					return true;
+				}
 			}
 		}
 		return false;
@@ -187,17 +198,20 @@ public class Playarea extends JPanel implements KeyListener {
 			left = false;
 			down = false;
 			right = false;
-		} else if (key == KeyEvent.VK_A) {
+		} 
+		else if (key == KeyEvent.VK_A) {
 			up = false;
 			left = true;
 			down = false;
 			right = false;
-		} else if (key == KeyEvent.VK_S) {
+		} 
+		else if (key == KeyEvent.VK_S) {
 			up = false;
 			left = false;
 			down = true;
 			right = false;
-		} else if (key == KeyEvent.VK_D) {
+		} 
+		else if (key == KeyEvent.VK_D) {
 			up = false;
 			left = false;
 			down = false;
