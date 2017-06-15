@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Snake {
+public class Snake {//creating the class for the snake head
 	int x;
 	int y;
 	int width = 10;
@@ -13,11 +13,11 @@ public class Snake {
 		speed = newspeed;
 		
 	}
-	public void paintMe(Graphics g) {
+	public void paintMe(Graphics g) {//painting the snake
 		g.setColor(Color.GREEN);
 		g.fillRect(x, y, width, height);
 	}
-	public int getX() {
+	public int getX() {//getters and setters
 		return x;
 	}
 	public void setX(int x) {
