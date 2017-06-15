@@ -1,5 +1,5 @@
 
-public class Body {
+public class Body { //creating the snake body class
 	int x;
 	int y;
 	int length;
@@ -9,7 +9,7 @@ public class Body {
 		x = newx;
 		y = newy;
 	}
-	public int getX() {
+	public int getX() {//getter and setters
 		return x;
 	}
 	public void setX(int x) {
