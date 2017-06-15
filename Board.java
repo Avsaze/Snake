@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class Board implements ActionListener, Runnable{
+public class Board implements ActionListener, Runnable{ //creating all of the global variables
 	static JFrame frame = new JFrame("Snake!");
 	Playarea playarea = new Playarea();
 	Container south = new Container();
@@ -28,7 +28,7 @@ public class Board implements ActionListener, Runnable{
 	boolean running = false;
 	
 	
-	public Board(){
+	public Board(){ //creating the board layout
 		frame.setSize(500,500);
 		frame.setLayout(new BorderLayout());
 		frame.add(playarea, BorderLayout.CENTER);
@@ -57,8 +57,8 @@ public class Board implements ActionListener, Runnable{
 
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource().equals(Easy)){
+	public void actionPerformed(ActionEvent e) {//when you chose the difficulty start playing the game
+		if(e.getSource().equals(Easy)){//using easy difficulty
 			dif = easy;
 			Easy.setEnabled(false);
 			Medium.setEnabled(false);
@@ -69,7 +69,7 @@ public class Board implements ActionListener, Runnable{
 				t.start();
 			}
 		}
-		if(e.getSource().equals(Medium)){
+		if(e.getSource().equals(Medium)){//using medium difficulty
 			dif = med;
 			Easy.setEnabled(false);
 			Medium.setEnabled(false);
@@ -80,7 +80,7 @@ public class Board implements ActionListener, Runnable{
 				t.start();
 			}
 		}
-		if(e.getSource().equals(Hard)){
+		if(e.getSource().equals(Hard)){//using hard difficulty
 			dif = hard;
 			Easy.setEnabled(false);
 			Medium.setEnabled(false);
@@ -92,9 +92,9 @@ public class Board implements ActionListener, Runnable{
 			}
 		}
 	}
-	public void run() {
+	public void run() {//start running
 		while(running == true){
-			playarea.step();
+			playarea.step();//call the play area and the step method
 			scorel.setText(playarea.getScore());
 			frame.repaint();
 			try{
