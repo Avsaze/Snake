@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class Playarea extends JPanel implements KeyListener {
+public class Playarea extends JPanel implements KeyListener {//creating all of the global variables
 	ArrayList<Snake> snakes = new ArrayList<Snake>();
 	ArrayList<Food> foodz = new ArrayList<Food>();
 	ArrayList<Body> body = new ArrayList<Body>();
@@ -18,26 +18,26 @@ public class Playarea extends JPanel implements KeyListener {
 	int score = 1;
 	String Score = Integer.toString(score);
 
-	public Playarea() {
+	public Playarea() { //drawing the play area
 		super();
 		addKeyListener(this);
 		setFocusable(true);
 		setFocusTraversalKeysEnabled(false);
 	}
 
-	public void addsnake(Snake s) {
+	public void addsnake(Snake s) {// method to add a snake head
 		snakes.add(s);
 	}
 
-	public void addfood(Food f) {
+	public void addfood(Food f) { //method to add food to the board
 		foodz.add(f);
 	}
 
-	public void addBody(Body b) {
+	public void addBody(Body b) { //method to add new body parts
 		body.add(b);
 	}
 
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) { //painting the food, the head, and the body
 		super.paintComponent(g);
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, getWidth(), getHeight());
@@ -52,7 +52,7 @@ public class Playarea extends JPanel implements KeyListener {
 		}
 	}
 
-	public void step() {
+	public void step() {//what to do ever step
 		if (collisionself() == false) {
 			for (int a = 0; a < snakes.size(); a++) {
 				Snake s = snakes.get(a);
@@ -167,7 +167,7 @@ public class Playarea extends JPanel implements KeyListener {
 		}
 	}
 
-	public boolean collisionself() {
+	public boolean collisionself() { //checking if the head hits the body
 		Body b = null;
 		if (body.isEmpty() == false) {
 		for (int i = 0; i < body.size(); i++) {
@@ -181,15 +181,15 @@ public class Playarea extends JPanel implements KeyListener {
 		return false;
 	}
 
-	public String getScore() {
+	public String getScore() {//method for getting the score
 		return Score;
 	}
 
-	public void setScore(String score) {
+	public void setScore(String score) {//method to set the score
 		Score = score;
 	}
 
-	public void keyPressed(KeyEvent e) {
+	public void keyPressed(KeyEvent e) { //kep pressed event that the player uses to control the snake
 		int key = e.getKeyCode();
 		if (key == KeyEvent.VK_W) {
 			up = true;
