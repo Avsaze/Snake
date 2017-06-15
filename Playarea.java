@@ -53,14 +53,14 @@ public class Playarea extends JPanel implements KeyListener {//creating all of t
 	}
 
 	public void step() {//what to do ever step
-		if (collisionself() == false) {
-			for (int a = 0; a < snakes.size(); a++) {
+		if (collisionself() == false) {//if the snake hasnt hit the body
+			for (int a = 0; a < snakes.size(); a++) { //get the head
 				Snake s = snakes.get(a);
 				Food f = foodz.get(a);
 				Body b = null;
-				if (s.getX() == f.getX() && s.getY() == f.getY()) {
-					Food food = new Food((int) (10*(Math.round((Math.random()* 400))/10)),(int)(10*(Math.round((Math.random()* 400)/10))));
-					if (body.isEmpty() == true) {
+				if (s.getX() == f.getX() && s.getY() == f.getY()) {//if the head hits collides with the food
+					Food food = new Food((int) (10*(Math.round((Math.random()* 400))/10)),(int)(10*(Math.round((Math.random()* 400)/10))));//create a new food
+					if (body.isEmpty() == true) {//if there is nothing in the body create a new body and add it to the end of the snake
 						if (up == true) {
 							b = new Body(s.getX(), s.getY() + s.getSpeed());
 						} 
@@ -74,7 +74,7 @@ public class Playarea extends JPanel implements KeyListener {//creating all of t
 							b = new Body(s.getX() - s.getSpeed(), s.getY());
 						}
 					} 
-					else {
+					else {//if the body is already started add a new body to the end of the snake
 						if (up == true) {
 							b = new Body(body.get(body.size() - 1).getX(),
 									body.get(body.size() - 1).getY() + s.getSpeed());
@@ -92,23 +92,23 @@ public class Playarea extends JPanel implements KeyListener {//creating all of t
 									body.get(body.size() - 1).getY());
 						}
 					}
-					foodz.remove(a);
-					foodz.add(food);
-					body.add(b);
-					score++;
+					foodz.remove(a);//remove the food from the board
+					foodz.add(food);//add a new food
+					body.add(b);//add the body
+					score++;//increase the score
 					Score = Integer.toString(score);
-				}
+				}//if the player goes outside the playarea stop the game
 				if ((s.getX() <= -10) || (s.getX() >= getWidth() - 5) || (s.getY() <= -10)
 						|| (s.getY() >= getHeight() + 10)) {
 					JOptionPane.showMessageDialog(Board.frame, "You Lose!");
 					System.exit(0);
 				} 
-				else {
+				else {//used to move the body around
 					Body u = null;
 					if (up == true) {
-						s.setY(s.getY() - s.getSpeed());
+						s.setY(s.getY() - s.getSpeed());//moving the snake head
 						if (body.isEmpty() == false) {
-							for (int i = body.size() - 1; i > 0; i--) {
+							for (int i = body.size() - 1; i > 0; i--) {//moving the snake body to follow the part of the body that is ahead of it
 								u = body.get(i);
 								u.setX(body.get(i - 1).getX());
 								u.setY(body.get(i - 1).getY());
@@ -161,7 +161,7 @@ public class Playarea extends JPanel implements KeyListener {//creating all of t
 				}
 			}
 		} 
-		else {
+		else {//if collision is true
 			JOptionPane.showMessageDialog(Board.frame, "You Lose!");
 			System.exit(0);
 		}
